@@ -1,0 +1,15 @@
+@mixin objectSet($w, $h: auto) {
+  width: $w;
+  height: $h;
+}
+@mixin borderSet($w: 1px, $style: solid, $color: #000, $r: 0) {
+  border: $w $style $color;
+  border-radius: $r;
+}
+
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
