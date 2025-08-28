@@ -1,27 +1,31 @@
 .
 <template>
-  <section class="middle borderLine">
+  <section class="middle">
     <ul>
-      <li>
-        <label><input type="checkbox" />打球</label>
-        <button class="delital">刪除</button>
-      </li>
-      <li>
-        <label><input type="checkbox" />健身</label>
-        <button class="delital">刪除</button>
-      </li>
-      <li>
-        <label><input type="checkbox" />跑步</label>
-        <button class="delital">刪除</button>
-      </li>
+      <listitem
+        v-for="todoobj in todolist"
+        :key="todoobj.id"
+        :todoobj="todoobj"
+        :deleteTodo="deleteTodo"
+      />
     </ul>
   </section>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import listitem from "./listitem.vue";
 
-defineProps({});
+const props = defineProps({
+  todolist: {
+    type: Array, // 大寫 A
+    required: true,
+  },
+  deleteTodo: {
+    type: Function,
+    required: true,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -31,17 +35,8 @@ defineProps({});
 
   ul {
     padding: 0;
-    li {
-      display: flex;
-      justify-content: space-between;
-      padding: 08px 0px;
-      list-style: none;
-      //   background-color: #474747;
-      input {
-        color: #eee;
-        @include objectSet(16px, px);
-      }
-    }
+    @include borderSet(1px, solid, #a8a8a8, 4px);
+    overflow: hidden;
   }
 }
 </style>

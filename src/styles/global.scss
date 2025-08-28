@@ -15,3 +15,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  font-size: 20px;
+  color: #222;
+}
+
+input[type="checkbox"] {
+  accent-color: #359df1;   // 你要的色
+}
+
+.borderLine { 
+  border: 1px solid #000;
+}
+button {
+  padding: 2px 8px;
+  background-color: #d13f06;
+  color: #eee;
+  @include borderSet(2px, none, #333, 4px);
+  &:hover {
+    background-color: #f54500;
+    cursor: pointer;
+  }
+}
+.list-space {
+  //   height: 600px;
+  padding: 16px;
+  width: 600px;
+  background-color: #eee;
+  @include borderSet(2px, solid, #333, 4px);
+}
