@@ -1,26 +1,56 @@
 <template>
   <section class="bottom borderLine">
     <div>
-      <input type="checkbox" />
-      <span>2/3已完成事項</span>
+      <label>
+        <input type="checkbox" v-model="isAll" />
+        <span>已完成{{ todocomplated }}項 / 共{{ total }}項</span>
+      </label>
     </div>
-    <button>清除已完成事項</button>
+    <button @click="clearAll">清除已完成事項</button>
   </section>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
-defineProps({});
+const props = defineProps({
+  todolist: {
+    type: Array,
+    required: true,
+  },
+  checkAll: {
+    type: Function,
+    required: true,
+  },
+  clearAllCompleted: {
+    type: Function,
+    required: true,
+  },
+});
+function clearAll(){
+  props.clearAllCompleted()
+}
+
+const total = computed(() => props.todolist.length);
+
+const todocomplated = computed(() =>
+  props.todolist.reduce((count, todo) => count + (todo.completed ? 1 : 0), 0)
+);
+//get set 方式雙向綁定
+const isAll = computed({
+  get: () => todocomplated.value === total.value && total.value > 0,
+  set: (val) => props.checkAll(val)
+})
+
+
 </script>
 
 <style lang="scss" scoped>
 .bottom {
   padding: 16px 16px;
 
-  @include borderSet(1px, solid, #aaa, 4px);
+  @include borderSet(2px, solid, #aaa, 4px);
   display: flex;
   justify-content: space-between;
 }
-
 </style>

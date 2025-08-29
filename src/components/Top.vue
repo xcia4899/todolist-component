@@ -15,7 +15,6 @@ import { ref, computed } from "vue";
 
 const title = ref("");
 
-
 const props = defineProps({
   addTodo: {
     type: Function,
@@ -23,9 +22,8 @@ const props = defineProps({
   },
 });
 
-
-
 function add() {
+  if (!title.value.trim())  return;
   const todeobj = {
     ID: Date.now(),
     title: title.value.trim(),
@@ -37,11 +35,14 @@ function add() {
 </script>
 
 <style lang="scss" scoped>
+//sass 顏色API
+@use "sass:color";
+
 .top {
   padding: 8px 16px;
   display: flex;
   justify-content: space-between;
-  @include borderSet(1px, solid, #aaa, 4px);
+  @include borderSet(2px, solid, #aaa, 4px);
 
   input {
     width: 80%;
@@ -56,10 +57,11 @@ function add() {
       background-color: #fff;
     }
   }
+
   button {
     background-color: #359df1;
     &:hover {
-      background-color: darken(#359df1, 10%);
+      background: color.scale(#359df1, $lightness: -20%);
       cursor: pointer;
     }
   }

@@ -1,12 +1,14 @@
 .
 <template>
-  <section class="middle">
-    <ul>
+  <section  class="middle" v-show="todolist.length > 0">
+    <ul >
       <listitem
         v-for="todoobj in todolist"
         :key="todoobj.id"
         :todoobj="todoobj"
         :deleteTodo="deleteTodo"
+        :checkTodo="checkTodo"
+       
       />
     </ul>
   </section>
@@ -25,18 +27,21 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  checkTodo: {
+    type: Function,
+    required: true,
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .middle {
-  padding: 8px;
-  @include borderSet(1px, solid, #aaa, 4px);
-
+  @include borderSet(2px, solid, #aaa, 4px);
+  padding: 0 0px;
+  overflow: hidden;
   ul {
+    margin: 0;
     padding: 0;
-    @include borderSet(1px, solid, #a8a8a8, 4px);
-    overflow: hidden;
   }
 }
 </style>

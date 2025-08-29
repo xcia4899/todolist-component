@@ -1,4 +1,4 @@
-
+@use "sass:color";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -20,27 +20,43 @@
   color: #222;
 }
 
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+input{
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
 input[type="checkbox"] {
-  accent-color: #359df1;   // 你要的色
+  width: 20px;
+  height: 20px;
+
+  accent-color: #359df1; // 你要的色
 }
 
-.borderLine { 
+span {
+  user-select: none;
+}
+
+.borderLine {
   border: 1px solid #000;
 }
+
 button {
-  padding: 2px 8px;
+  padding: 4px 12px;
   background-color: #d13f06;
   color: #eee;
+  font-size: 16px;
+  user-select: none;
+
   @include borderSet(2px, none, #333, 4px);
+
   &:hover {
-    background-color: #f54500;
+      background: color.scale(#d13f06, $lightness: 20%);
     cursor: pointer;
   }
-}
-.list-space {
-  //   height: 600px;
-  padding: 16px;
-  width: 600px;
-  background-color: #eee;
-  @include borderSet(2px, solid, #333, 4px);
 }
