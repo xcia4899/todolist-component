@@ -17,7 +17,6 @@
 - `<script setup>` 語法  
 - `ref` / `reactive` 狀態管理  
 - `props` 父傳子  
-- `emit` 子回父  
 - Scoped CSS 避免樣式衝突  
 - **SCSS 模組化**：`@use` / `@import` 管理樣式  
 - 可自訂 **變數 / Mixin / 巢狀選擇器** 提升可維護性  
