@@ -45,7 +45,7 @@ function add() {
   @include borderSet(2px, solid, #aaa, 4px);
 
   input {
-    width: 80%;
+    flex: 0.9;
     height: 32px;
     border-radius: 4px;
     border: 1px solid #ccc;

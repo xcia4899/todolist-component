@@ -21,6 +21,7 @@ import listitem from "./listitem.vue";
 const props = defineProps({
   todolist: {
     type: Array, // 大寫 A
+  
     required: true,
   },
   deleteTodo: {
