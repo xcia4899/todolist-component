@@ -1,7 +1,7 @@
 <template>
   <div class="list-space stack borderLine">
     <h2>事件清單</h2>
-    <Top :addTodo="addTodo" />
+    <Top @addTodo="addTodo" />
     <Middle
       :todolist="todolist"
       :deleteTodo="deleteTodo"
@@ -9,8 +9,8 @@
     />
     <Bottom
       :todolist="todolist"
-      :checkAll="checkAll"
-      :clearAllCompleted="clearAllCompleted"
+      @checkAll="checkAll"
+      @clearAllCompleted="clearAllCompleted"
     />
   </div>
 </template>
@@ -21,12 +21,13 @@ import Middle from "@/components/Middle.vue";
 import Bottom from "@/components/Bottom.vue";
 import { onMounted, ref, watch } from "vue";
 
+const todolist = ref([]);
+
+
 const list = [
   { ID: "1", title: "打球(預設)", completed: false },
   { ID: "2", title: "健身(預設)", completed: false },
 ];
-
-const todolist = ref(list);
 
 onMounted(() => {
   try {
@@ -41,7 +42,7 @@ onMounted(() => {
 watch(
   todolist,
   (newVal, oldVal) => {
-    console.log("todolist 改變:", newVal);
+    // console.log("todolist 改變:", newVal);
     localStorage.setItem("todolist", JSON.stringify(newVal));
   },
   { deep: true }

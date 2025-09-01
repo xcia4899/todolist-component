@@ -15,11 +15,12 @@ import { ref, computed } from "vue";
 
 const title = ref("");
 
+const emit = defineEmits(['addTodo'])
 const props = defineProps({
-  addTodo: {
-    type: Function,
-    required: true,
-  },
+  // addTodo: {
+  //   type: Function,
+  //   required: true,
+  // },
 });
 
 function add() {
@@ -29,7 +30,9 @@ function add() {
     title: title.value.trim(),
     completed: false,
   };
-  props.addTodo(todeobj);
+  // props.addTodo(todeobj);
+  // emit事件
+  emit('addTodo', todeobj)
   title.value = "";
 }
 </script>

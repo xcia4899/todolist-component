@@ -18,17 +18,12 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-  checkAll: {
-    type: Function,
-    required: true,
-  },
-  clearAllCompleted: {
-    type: Function,
-    required: true,
-  },
+ 
 });
+const emit = defineEmits(["checkAll", "clearAllCompleted"]);
 function clearAll(){
-  props.clearAllCompleted()
+  // props.clearAllCompleted()
+  emit('clearAllCompleted')
 }
 
 const total = computed(() => props.todolist.length);
@@ -39,7 +34,8 @@ const todocomplated = computed(() =>
 //get set 方式雙向綁定
 const isAll = computed({
   get: () => todocomplated.value === total.value && total.value > 0,
-  set: (val) => props.checkAll(val)
+  // set: (val) => props.checkAll(val)
+  set: (val) => emit('checkAll', val)
 })
 
 
