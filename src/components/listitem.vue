@@ -116,6 +116,7 @@ li {
       visibility: visible;
     }
   }
+ 
   .edit {
     flex: 0.8;
     width: 100%;
@@ -128,4 +129,5 @@ li {
     
   }
 }
+
 </style>
