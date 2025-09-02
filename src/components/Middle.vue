@@ -6,8 +6,8 @@
         v-for="todoobj in todolist"
         :key="todoobj.id"
         :todoobj="todoobj"
-        :deleteTodo="deleteTodo"
-        :checkTodo="checkTodo"
+        @deleteTodo="emit('deleteTodo', $event)"
+        @checkTodo="emit('checkTodo', $event)"
        
       />
     </ul>
@@ -18,17 +18,10 @@
 import { ref } from "vue";
 import listitem from "./listitem.vue";
 
+const emit = defineEmits(["deleteTodo", "checkTodo"]);
 const props = defineProps({
   todolist: {
     type: Array, // 大寫 A
-    required: true,
-  },
-  deleteTodo: {
-    type: Function,
-    required: true,
-  },
-  checkTodo: {
-    type: Function,
     required: true,
   },
 });

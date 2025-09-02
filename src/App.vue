@@ -1,11 +1,13 @@
 <template>
   <div class="list-space stack borderLine">
     <h2>事件清單</h2>
-    <Top @addTodo="addTodo" />
+    <Top  
+      @addTodo="addTodo"
+    />
     <Middle
       :todolist="todolist"
-      :deleteTodo="deleteTodo"
-      :checkTodo="checkTodo"
+      @deleteTodo="deleteTodo"
+      @checkTodo="checkTodo" 
     />
     <Bottom
       :todolist="todolist"
@@ -16,13 +18,17 @@
 </template>
 
 <script setup>
+import { onMounted, ref, watch } from "vue";
 import Top from "@/components/Top.vue";
 import Middle from "@/components/Middle.vue";
 import Bottom from "@/components/Bottom.vue";
-import { onMounted, ref, watch } from "vue";
+
+// import { storeToRefs } from 'pinia'
+// import { useTodoStore } from '@/stores/todo'
+// const todo = useTodoStore()
+// const { todos: todolist } = storeToRefs(todo)  // Pinia 的 todos 取代原本的 todolist
 
 const todolist = ref([]);
-
 
 const list = [
   { ID: "1", title: "打球(預設)", completed: false },
@@ -48,17 +54,18 @@ watch(
   { deep: true }
 );
 
+
+//新增
+function addTodo(todeobj) {
+  todolist.value.unshift(todeobj);
+  //   console.log('執行方法',todolist);
+}
 function checkTodo(ID) {
   todolist.value.forEach((item) => {
     if (item.ID === ID) {
       item.completed = !item.completed;
     }
   });
-}
-//新增
-function addTodo(todeobj) {
-  todolist.value.unshift(todeobj);
-  //   console.log('執行方法',todolist);
 }
 //刪除
 function deleteTodo(ID) {

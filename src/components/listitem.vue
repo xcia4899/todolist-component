@@ -17,29 +17,23 @@
 </template>
 
 <script setup>
+const emit = defineEmits(["deleteTodo", "checkTodo"]);
 const props = defineProps({
   todoobj: {
     type: Object,
     required: true,
   },
-  deleteTodo: {
-    type: Function,
-    required: true,
-  },
-  checkTodo: {
-    type: Function,
-    required: true,
-  },
- 
 });
 
 function del() {
-  props.deleteTodo(props.todoobj.ID);
+  // props.deleteTodo(props.todoobj.ID);
+  emit("deleteTodo", props.todoobj.ID);
 }
 function handleCheck(ID) {
   //通知父層元件改變對應對象的completed狀態
-  props.checkTodo(ID);
+  // props.checkTodo(ID);
   // console.log("check", ID);
+  emit("checkTodo", ID);
 }
 </script>
 
