@@ -69,12 +69,15 @@ button.green {
 /* 桌機限定 hover */
 @media (hover: hover) and (pointer: fine) {
   button:hover {
-    background-color: lighten(#ce3a00, 10%);
+    // background-color: lighten(#ce3a00, 10%);
+    background: color.scale(#ce3a00, $lightness: 20%);
   }
   button.blue:hover {
-    background-color: lighten(#0377d6, 20%);
+    // background-color: lighten(#0377d6, 20%);
+    background: color.scale(#0377d6, $lightness: 20%);
   }
   button.green:hover {
-    background-color: lighten(#036e30, 10%);
+    // background-color: lighten(#036e30, 10%);
+    background: color.scale(#036e30, $lightness: 10%);
   }
 }
