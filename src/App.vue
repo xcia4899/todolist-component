@@ -8,6 +8,7 @@
       :todolist="todolist"
       @deleteTodo="deleteTodo"
       @checkTodo="checkTodo" 
+      @editTodo="editTodo"
     />
     <Bottom
       :todolist="todolist"
@@ -61,17 +62,21 @@ function addTodo(todeobj) {
   //   console.log('執行方法',todolist);
 }
 function checkTodo(ID) {
-  todolist.value.forEach((item) => {
-    if (item.ID === ID) {
-      item.completed = !item.completed;
-    }
-  });
+  const t = todolist.value.find(item => item.ID === ID)
+  if (t) t.completed = !t.completed
 }
 //刪除
 function deleteTodo(ID) {
   if (!window.confirm("確定要刪除嗎？")) return;
   todolist.value = todolist.value.filter((item) => item.ID !== ID);
   // console.log("todolist內容", todolist);
+}
+//修改
+function editTodo(updateOgj) {
+  const t = todolist.value.find(item => item.ID === updateOgj.ID)
+  if (t) {
+    t.title = updateOgj.title
+  }
 }
 //全選or取消全選
 function checkAll(done) {
@@ -90,7 +95,7 @@ function clearAllCompleted() {
 .list-space {
   //   height: 600px;
   padding: 16px;
-  min-width: 350px;
+  min-width: 300px;
   max-width: 600px;
   background-color: #eee;
   @include borderSet(2px, solid, #333, 8px);

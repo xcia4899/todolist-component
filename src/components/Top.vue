@@ -6,7 +6,7 @@
       v-model="title"
       @keyup.enter="add"
     />
-    <button @click="add">新增</button>
+    <button class="blue" @click="add">新增</button>
   </section>
 </template>
 
@@ -48,7 +48,8 @@ function add() {
   @include borderSet(2px, solid, #aaa, 4px);
 
   input {
-    flex: 0.9;
+    // flex: 0.9;
+    width: 70%;
     height: 32px;
     border-radius: 4px;
     border: 1px solid #ccc;
@@ -61,12 +62,5 @@ function add() {
     }
   }
 
-  button {
-    background-color: #359df1;
-    &:hover {
-      background: color.scale(#359df1, $lightness: -20%);
-      cursor: pointer;
-    }
-  }
 }
 </style>

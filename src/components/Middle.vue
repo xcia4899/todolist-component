@@ -8,6 +8,7 @@
         :todoobj="todoobj"
         @deleteTodo="emit('deleteTodo', $event)"
         @checkTodo="emit('checkTodo', $event)"
+        @editTodo="emit('editTodo', $event)"
        
       />
     </ul>
@@ -18,7 +19,7 @@
 import { ref } from "vue";
 import listitem from "./listitem.vue";
 
-const emit = defineEmits(["deleteTodo", "checkTodo"]);
+const emit = defineEmits(["deleteTodo", "checkTodo","editTodo"]);
 const props = defineProps({
   todolist: {
     type: Array, // 大寫 A
