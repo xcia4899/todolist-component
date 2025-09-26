@@ -18,7 +18,6 @@
         @keyup.esc="cancelEdit"
       />
     </label>
-
     <div class="btns">
       <button class="blue" @click="edit" v-show="!todoobj.isEdit">修改</button>
       <button @click="del" v-show="!todoobj.isEdit">刪除</button>
@@ -81,10 +80,12 @@ li {
   align-items: center;
   padding: 8px 16px;
   list-style: none;
-   @media (max-width: 400px) {
-      //  padding: 8px 16px;
-       align-items: flex-start;
-    }
+  transition: all 0.2s linear;
+
+  @media (max-width: 400px) {
+    //  padding: 8px 16px;
+    align-items: flex-start;
+  }
   label {
     flex: 1;
     display: flex;
@@ -97,26 +98,19 @@ li {
     gap: 8px;
     @media (max-width: 400px) {
       flex-direction: column;
-       gap: 4px;
+      gap: 4px;
     }
   }
-
+  /* 觸控預設：顯示 */
   button {
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s, visibility 0.2s;
   }
   input {
     color: #eee;
     @include objectSet(16px, 16px);
   }
-  &:hover {
-    background-color: #fff;
-    button {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
- 
   .edit {
     flex: 0.8;
     width: 100%;
@@ -126,8 +120,22 @@ li {
     // border: 1px solid #bbb;
     @include borderSet(1px, solid, #bbb, 4px);
     padding: 4px 8px;
-    
   }
 }
-
+/* 桌機限定：預設隱藏，滑過父項時顯示 */
+@media (hover: hover) and (any-pointer: fine) {
+  li {
+    button {
+      opacity: 0;
+      visibility: hidden;
+    }
+    &:hover {
+      background-color: #fff;
+      button {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
 </style>
